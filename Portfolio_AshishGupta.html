@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashish Gupta | Algorithmic Derivatives Trader</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Inter Font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom class for the nav-link underline animation */
+        .nav-link {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: #4f46e5; /* indigo-600 */
+            transition: all 0.3s ease-in-out;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover::after,
+        .nav-link-active::after {
+            width: 100%;
+        }
+    </style>
+    <script>
+        // Set theme for Tailwind
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo / Name -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-2xl font-bold text-slate-900">
+                        Ashish Gupta
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex md:items-center md:space-x-8">
+                    <a href="#philosophy" class="nav-link text-slate-600 hover:text-indigo-600 font-medium">Philosophy</a>
+                    <a href="#performance" class="nav-link text-slate-600 hover:text-indigo-600 font-medium">Performance</a>
+                    <a href="#experience" class="nav-link text-slate-600 hover:text-indigo-600 font-medium">Experience</a>
+                    <a href="#education" class="nav-link text-slate-600 hover:text-indigo-600 font-medium">Education</a>
+                    <a href="#contact" class="nav-link text-slate-600 hover:text-indigo-600 font-medium">Contact</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex md:hidden">
+                    <button id="mobile-menu-button" class="text-slate-600 hover:text-indigo-600 focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-slate-200">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#philosophy" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-indigo-50 hover:text-indigo-600">Philosophy</a>
+                <a href="#performance" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-indigo-50 hover:text-indigo-600">Performance</a>
+                <a href="#experience" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-indigo-50 hover:text-indigo-600">Experience</a>
+                <a href="#education" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-indigo-50 hover:text-indigo-600">Education</a>
+                <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-600 hover:bg-indigo-50 hover:text-indigo-600">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+
+        <!-- Hero Section -->
+        <section id="hero" class="text-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900">
+                Ashish Gupta
+            </h1>
+            <p class="mt-4 text-xl sm:text-2xl text-indigo-600 font-semibold">
+                Algorithmic Derivatives Trader
+            </p>
+            <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
+                Self-motivated quants trader with 4+ years of experience in fund management, algorithmic strategy development, and real estate finance.
+            </p>
+            <div class="mt-8 flex justify-center gap-4">
+                <a href="#contact" class="px-6 py-3 bg-indigo-600 text-white font-medium rounded-lg shadow-md hover:bg-indigo-700 transition duration-300">
+                    Get in Touch
+                </a>
+                <a href="#performance" class="px-6 py-3 bg-white text-indigo-600 font-medium rounded-lg shadow-md border border-slate-300 hover:bg-slate-100 transition duration-300">
+                    See Performance
+                </a>
+            </div>
+        </section>
+
+        <!-- Personal Philosophy Section -->
+        <section id="philosophy" class="mt-20 md:mt-28 scroll-mt-20">
+            <h2 class="text-3xl font-bold tracking-tight text-slate-900 text-center">
+                Personal Philosophy
+            </h2>
+            <p class="mt-3 text-lg text-slate-600 text-center max-w-3xl mx-auto">
+                A personal constitution that guides my decisions in life, finance, and relationships.
+            </p>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Principle Card -->
+                <div class="bg-white p-6 rounded-lg shadow-lg border border-slate-200">
+                    <div class="flex items-center gap-4">
+                        <i data-lucide="users" class="w-8 h-8 text-indigo-600"></i>
+                        <h3 class="text-xl font-semibold text-slate-900">Character & Relationships</h3>
+                    </div>
+                    <ul class="mt-4 space-y-2 text-slate-600 list-disc list-inside">
+                        <li>Be honest and never compromise on internal principles.</li>
+                        <li>Have friends who can help you at midnight, and be that friend.</li>
+                        <li>Live for the happiness of your partner; be a role model.</li>
+                        <li>Think from the perspective of others.</li>
+                    </ul>
+                </div>
+
+                <!-- Principle Card -->
+                <div class="bg-white p-6 rounded-lg shadow-lg border border-slate-200">
+                    <div class="flex items-center gap-4">
+                        <i data-lucide="zap" class="w-8 h-8 text-indigo-600"></i>
+                        <h3 class="text-xl font-semibold text-slate-900">Action & Influence</h3>
+                    </div>
+                    <ul class="mt-4 space-y-2 text-slate-600 list-disc list-inside">
+                        <li>Understand, then act.</li>
+                        <li>Be proactive and begin with the end in mind.</li>
+                        <li>Don't try to change others; be the change you want to see.</li>
+                        <li>Achieve hard things that get heads turning.</li>
+                    </ul>
+                </div>
+
+                <!-- Principle Card -->
+                <div class="bg-white p-6 rounded-lg shadow-lg border border-slate-200">
+                    <div class="flex items-center gap-4">
+                        <i data-lucide="brain" class="w-8 h-8 text-indigo-600"></i>
+                        <h3 class="text-xl font-semibold text-slate-900">Mindset & Growth</h3>
+                    </div>
+                    <ul class="mt-4 space-y-2 text-slate-600 list-disc list-inside">
+                        <li>Learning first—it's the best enjoyment.</li>
+                        <li>Always be positive, even in a "figurative death camp".</li>
+                        <li>Never criticize or complain; see the positive in people.</li>
+                        <li>Experience new things and learn from them.</li>
+                    </ul>
+                </div>
+
+                <!-- Principle Card -->
+                <div class="bg-white p-6 rounded-lg shadow-lg border border-slate-200 lg:col-span-2">
+                    <div class="flex items-center gap-4">
+                        <i data-lucide="piggy-bank" class="w-8 h-8 text-indigo-600"></i>
+                        <h3 class="text-xl font-semibold text-slate-900">Financial Philosophy</h3>
+                    </div>
+                    <ul class="mt-4 space-y-2 text-slate-600 list-disc list-inside">
+                        <li>Money should be a servant, not the master.</li>
+                        <li>Seek financial independence. Keep wants subject to needs and means.</li>
+                        <li>Remain debt-free, with rare, strategic exceptions for business.</li>
+                        <li>Spend less than I make and invest what I save.</li>
+                    </ul>
+                </div>
+
+                <!-- Principle Card -->
+                <div class="bg-white p-6 rounded-lg shadow-lg border border-slate-200">
+                    <div class="flex items-center gap-4">
+                        <i data-lucide="notebook-pen" class="w-8 h-8 text-indigo-600"></i>
+                        <h3 class="text-xl font-semibold text-slate-900">Purpose & Process</h3>
+                    </div>
+                    <ul class="mt-4 space-y-2 text-slate-600 list-disc list-inside">
+                        <li>Use money and talent to make life more enjoyable for others.</li>
+                        <li>Practice service and charitable giving.</li>
+                        <li>Write a diary: see the past, visualize the future, and harden core principles.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Trading Performance Section -->
+        <section id="performance" class="mt-20 md:mt-28 scroll-mt-20">
+            <h2 class="text-3xl font-bold tracking-tight text-slate-900 text-center">
+                Trading Performance
+            </h2>
+            <p class="mt-3 text-lg text-slate-600 text-center max-w-3xl mx-auto">
+                Demonstrated results from algorithmic and discretionary trading across F&O and Equity segments.
+            </p>
+
+            <!-- Highlight Stats -->
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-indigo-600 text-white p-6 rounded-xl shadow-lg">
+                    <p class="text-sm font-medium text-indigo-100">Total Realized Profit</p>
+                    <p class="text-4xl font-bold tracking-tight mt-1">₹1.34 Cr+</p>
+                    <p class="text-sm text-indigo-200 mt-2">(Equity + F&O, 2022-Present)</p>
+                </div>
+                <div class="bg-slate-800 text-white p-6 rounded-xl shadow-lg">
+                    <p class="text-sm font-medium text-slate-300">Unrealized Equity Profit</p>
+                    <p class="text-4xl font-bold tracking-tight mt-1">₹63.52 L+</p>
+                    <p class="text-sm text-slate-400 mt-2">(As of Oct 2025)</p>
+                </div>
+                <div class="bg-slate-800 text-white p-6 rounded-xl shadow-lg">
+                    <p class="text-sm font-medium text-slate-300">Total F&O Profit (Realized)</p>
+                    <p class="text-4xl font-bold tracking-tight mt-1">₹1.24 Cr+</p>
+                    <p class="text-sm text-slate-400 mt-2">(FY 2022 - Present)</p>
+                </div>
+                <div class="bg-slate-800 text-white p-6 rounded-xl shadow-lg">
+                    <p class="text-sm font-medium text-slate-300">Total Equity Profit (Realized)</p>
+                    <p class="text-4xl font-bold tracking-tight mt-1">₹10.03 L+</p>
+                    <p class="text-sm text-slate-400 mt-2">(Lifetime Realized)</p>
+                </div>
+            </div>
+
+            <!-- Performance Breakdown -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-semibold text-center text-slate-900">Performance Breakdown</h3>
+                <div class="mt-6 flex flex-col">
+                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                            <div class="shadow-lg border border-slate-200 overflow-hidden sm:rounded-lg max-w-4xl mx-auto">
+                                <table class="min-w-full divide-y divide-slate-200">
+                                    <thead class="bg-slate-100">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-600 uppercase tracking-wider">
+                                                Period
+                                            </th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-600 uppercase tracking-wider">
+                                                Segment
+                                            </th>
+                                            <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-slate-600 uppercase tracking-wider">
+                                                Net Realized Profit
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-slate-200">
+                                        <tr class="bg-white">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">FY 2022-2023</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">Future & Option</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 text-right font-mono font-medium">+ ₹9,57,347.38</td>
+                                        </tr>
+                                        <tr class="bg-slate-50">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">FY 2023-2024</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">Future & Option</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 text-right font-mono font-medium">+ ₹49,42,818.86</td>
+                                        </tr>
+                                        <tr class="bg-white">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">FY 2024-2025</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">Future & Option</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 text-right font-mono font-medium">+ ₹50,73,321.49</td>
+                                        </tr>
+                                        <tr class="bg-slate-50">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">FY 2025-Present</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">Future & Option</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 text-right font-mono font-medium">+ ₹14,74,685.83</td>
+                                        </tr>
+                                        <tr class="bg-white">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900" colspan="2">Total F&O (Realized)</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-green-700 text-right font-mono font-bold">+ ₹1,24,48,373.57</td>
+                                        </tr>
+                                        <tr class="bg-slate-50">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900">Lifetime</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900">Equity (Realized)</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 text-right font-mono font-bold">+ ₹10,03,317.10</td>
+                                        </tr>
+                                        <tr class="bg-white">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900">Current</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900">Equity (Unrealized)</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 text-right font-mono font-bold">₹63,52,766.51</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Equity Curve Chart -->
+                <div class="mt-16">
+                    <h3 class="text-2xl font-semibold text-center text-slate-900">Portfolio Growth (Equity Curve)</h3>
+                    <p class="mt-2 text-center text-slate-600 max-w-2xl mx-auto">Illustrative growth of a ₹1.35 Cr starting portfolio, including all realized and unrealized profits from F&O and Equity segments.</p>
+                    <div class="mt-6 max-w-4xl mx-auto bg-white p-4 sm:p-6 rounded-lg shadow-lg border border-slate-200">
+                        <div class="relative h-64 sm:h-96">
+                            <canvas id="equityCurveChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Achievements -->
+                <div class="mt-16">
+                    <h3 class="text-2xl font-semibold text-center text-slate-900">Key Achievements</h3>
+                    <div class="mt-8 max-w-3xl mx-auto space-y-4">
+                        <div class="bg-white p-5 rounded-lg shadow border border-slate-200 flex items-center gap-4">
+                            <i data-lucide="trending-up" class="w-6 h-6 text-indigo-600 flex-shrink-0"></i>
+                            <p><span class="font-semibold">55% Net CAGR</span> in 2023</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-lg shadow border border-slate-200 flex items-center gap-4">
+                            <i data-lucide="trending-up" class="w-6 h-6 text-indigo-600 flex-shrink-0"></i>
+                            <p><span class="font-semibold">45% Net CAGR</span> for 2024-Present</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-lg shadow border border-slate-200 flex items-center gap-4">
+                            <i data-lucide="trophy" class="w-6 h-6 text-indigo-600 flex-shrink-0"></i>
+                            <p><span class="font-semibold">Finalist in Smart India Hackathon 2018</span> (Problem statement by Goldman Sachs)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Experience Section -->
+        <section id="experience" class="mt-20 md:mt-28 scroll-mt-20">
+            <h2 class="text-3xl font-bold tracking-tight text-slate-900 text-center">
+                Professional Experience
+            </h2>
+            <div class="mt-16 max-w-3xl mx-auto">
+                <!-- Timeline Container -->
+                <div class="relative space-y-12">
+                    <!-- Timeline Line -->
+                    <div class="absolute left-3.5 top-2 w-0.5 h-full bg-slate-300" aria-hidden="true"></div>
+
+                    <!-- Timeline Item -->
+                    <div class="relative flex items-start space-x-6">
+                        <!-- Timeline Dot -->
+                        <div class="flex-shrink-0">
+                            <div class="w-7 h-7 flex items-center justify-center bg-indigo-600 rounded-full text-white">
+                                <i data-lucide="briefcase" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <!-- Timeline Content -->
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm text-slate-500">April 2022 - Present</p>
+                            <h3 class="text-xl font-semibold text-slate-900 mt-1">Asset Manager (Self-Employed)</h3>
+                            <p class="mt-3 text-slate-600">
+                                Automate derivatives trading strategies using Python, C, and C++. Manage the full lifecycle of writing, backtesting, forward-testing, and deploying live trading algorithms across multiple brokers.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item -->
+                    <div class="relative flex items-start space-x-6">
+                        <!-- Timeline Dot -->
+                        <div class="flex-shrink-0">
+                            <div class="w-7 h-7 flex items-center justify-center bg-indigo-600 rounded-full text-white">
+                                <i data-lucide="building-2" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <!-- Timeline Content -->
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm text-slate-500">December 2020 - Present</p>
+                            <h3 class="text-xl font-semibold text-slate-900 mt-1">Co-Director, Real Estate Business</h3>
+                            <p class="mt-3 text-slate-600">
+                                Working with father, managing a staff of 5. Oversee real estate financing, research new opportunities, and manage funding for new projects in the Delhi NCR. Portfolio includes industrial, residential, and agricultural land.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item -->
+                    <div class="relative flex items-start space-x-6">
+                        <!-- Timeline Dot -->
+                        <div class="flex-shrink-0">
+                            <div class="w-7 h-7 flex items-center justify-center bg-indigo-600 rounded-full text-white">
+                                <i data-lucide="bot" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <!-- Timeline Content -->
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm text-slate-500">Jan 2022 - Feb 2022</p>
+                            <h3 class="text-xl font-semibold text-slate-900 mt-1">Internship at GRAASSP Investments</h3>
+                            <p class="mt-3 text-slate-600">
+                                Wrote algorithmic trading bots for Indian discount brokers (Zerodha, Kotak Neo, Firstock). Contributed to strategy optimization and parallel integration of bots across multiple accounts.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item -->
+                    <div class="relative flex items-start space-x-6">
+                        <!-- Timeline Dot -->
+                        <div class="flex-shrink-0">
+                            <div class="w-7 h-7 flex items-center justify-center bg-indigo-600 rounded-full text-white">
+                                <i data-lucide="code" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <!-- Timeline Content -->
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm text-slate-500">July 2020 - August 2021</p>
+                            <h3 class="text-xl font-semibold text-slate-900 mt-1">Internship at Goldman Sachs</h3>
+                            <p class="mt-3 text-slate-600">
+                                Expanded the scope of ticketing systems and replaced old monitoring systems. Built a generic ETL pipeline (Kafka, Hazelcast) with an ingestor to Hive for big data management.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline Item -->
+                    <div class="relative flex items-start space-x-6">
+                        <!-- Timeline Dot -->
+                        <div class="flex-shrink-0">
+                            <div class="w-7 h-7 flex items-center justify-center bg-indigo-600 rounded-full text-white">
+                                <i data-lucide="code" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <!-- Timeline Content -->
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm text-slate-500">June 2019 - July 2019</p>
+                            <h3 class="text-xl font-semibold text-slate-900 mt-1">Internship at Goldman Sachs</h3>
+                            <p class="mt-3 text-slate-600">
+                                Worked on a Spring Boot + Angular + IBM DB2 relational database migration from a legacy .NET framework. Built a Node.js bridge to connect internal APIs to a third-party cloud service.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Research Section -->
+        <section id="education" class="mt-20 md:mt-28 scroll-mt-20">
+            <h2 class="text-3xl font-bold tracking-tight text-slate-900 text-center">
+                Education & Research
+            </h2>
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Education -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-slate-900">Education</h3>
+                    <div class="mt-6 space-y-6">
+                        <div class="bg-white p-5 rounded-lg shadow border border-slate-200">
+                            <p class="text-sm text-indigo-600 font-medium">2016 - 2020</p>
+                            <h4 class="text-lg font-semibold text-slate-800 mt-1">Delhi Technological University</h4>
+                            <p class="text-slate-600">Mathematics and Computer Science</p>
+                            <p class="text-slate-600 font-medium">CGPA: 8.97</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-lg shadow border border-slate-200">
+                            <p class="text-sm text-indigo-600 font-medium">2013 - 2015</p>
+                            <h4 class="text-lg font-semibold text-slate-800 mt-1">CBSE (Xth & XIIth)</h4>
+                            <p class="text-slate-600">XIIth: 95.2% (Science w/ Mathematics)</p>
+                            <p class="text-slate-600">Xth: 10.0 CGPA</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Research -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-slate-900">Research Paper</h3>
+                    <div class="mt-6">
+                        <div class="bg-white p-5 rounded-lg shadow border border-slate-200">
+                            <h4 class="text-lg font-semibold text-slate-800">Brave Men and Emotional Women: Analyzing Gender Bias in Bollywood Songs</h4>
+                            <p class="mt-2 text-slate-600">
+                                Gupta, A., Ladia, H., Bansal, S., Arora, A. (2021).
+                            </p>
+                            <p class="mt-2 text-sm text-slate-500 italic">
+                                Proceedings of International Conference on Computational Intelligence and Data Engineering. Springer, Singapore.
+                            </p>
+                            <a href="https://doi.org/10.1007/978-981-15-8767-2_13" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center text-indigo-600 font-medium hover:text-indigo-800">
+                                Read Paper
+                                <i data-lucide="arrow-up-right" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Work Section -->
+        <section id="social-work" class="mt-20 md:mt-28 scroll-mt-20">
+            <h2 class="text-3xl font-bold tracking-tight text-slate-900 text-center">
+                Social Work
+            </h2>
+            <div class="mt-12 max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg border border-slate-200">
+                <div class="flex items-center gap-4">
+                    <img src="https://placehold.co/60x60/e0e7ff/4f46e5?text=AOL" alt="Art of Living" class="w-16 h-16 rounded-full flex-shrink-0 bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold">
+                    <div>
+                        <h3 class="text-xl font-semibold text-slate-900">6 Month Internship at Art of Living Foundation</h3>
+                        <p class="text-slate-500">2017</p>
+                    </div>
+                </div>
+                <ul class="mt-4 space-y-2 text-slate-600 list-disc list-inside">
+                    <li>Taught mathematics and science to underprivileged children in Shahbad Daulatpur Village.</li>
+                    <li>Organized tours and activities for students with autism.</li>
+                    <li>Helped organize Meditation and Stress Relief Workshops (YES!+, DSN) in Delhi NCR.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="mt-20 md:mt-28 scroll-mt-20">
+            <h2 class="text-3xl font-bold tracking-tight text-slate-900 text-center">
+                Get in Touch
+            </h2>
+            <div class="mt-12 max-w-lg mx-auto grid grid-cols-1 gap-6">
+                <a href="mailto:ashishgupta1350@gmail.com" class="bg-white p-6 rounded-lg shadow-lg border border-slate-200 flex items-center gap-5 group hover:shadow-xl hover:border-indigo-300 transition-all">
+                    <div class="flex-shrink-0 w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
+                        <i data-lucide="mail" class="w-6 h-6 text-indigo-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-800">Email</h3>
+                        <p class="text-slate-600 group-hover:text-indigo-600 transition-colors">ashishgupta1350@gmail.com</p>
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/in/ashishgupta1350/" target="_blank" rel="noopener noreferrer" class="bg-white p-6 rounded-lg shadow-lg border border-slate-200 flex items-center gap-5 group hover:shadow-xl hover:border-indigo-300 transition-all">
+                    <div class="flex-shrink-0 w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
+                        <i data-lucide="linkedin" class="w-6 h-6 text-indigo-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-800">LinkedIn</h3>
+                        <p class="text-slate-600 group-hover:text-indigo-600 transition-colors">in/ashishgupta1350</p>
+                    </div>
+                </a>
+                <a href="https://github.com/ashishgupta1350" target="_blank" rel="noopener noreferrer" class="bg-white p-6 rounded-lg shadow-lg border border-slate-200 flex items-center gap-5 group hover:shadow-xl hover:border-indigo-300 transition-all">
+                    <div class="flex-shrink-0 w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
+                        <i data-lucide="github" class="w-6 h-6 text-indigo-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-800">GitHub</h3>
+                        <p class="text-slate-600 group-hover:text-indigo-600 transition-colors">ashishgupta1350</p>
+                    </div>
+                </a>
+                <div class="bg-white p-6 rounded-lg shadow-lg border border-slate-200 flex items-center gap-5">
+                    <div class="flex-shrink-0 w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center">
+                        <i data-lucide="phone" class="w-6 h-6 text-indigo-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-800">Phone</h3>
+                        <p class="text-slate-600">+91 99101 40614</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 mt-20 md:mt-28">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 Ashish Gupta. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu and Icons -->
+    <script>
+        // Activate Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Equity Curve Chart Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('equityCurveChart');
+            if (!ctx) return;
+
+            // Data calculated as per your request:
+            // Base: 1,35,00,000
+            // Profits allocated across 4 periods (FY22-23, FY23-24, FY24-25, FY25-Pres)
+            const chartData = {
+                labels: ['Apr 2022', 'Mar 2023', 'Mar 2024', 'Mar 2025', 'Oct 2025'],
+                values: [
+                    13500000, // Start
+                    16296368, // + Period 1 Gains
+                    23078208, // + Period 2 Gains
+                    29990550, // + Period 3 Gains
+                    33304257  // + Period 4 Gains
+                ]
+            };
+
+            const chartGradient = ctx.getContext('2d').createLinearGradient(0, 0, 0, 400);
+            chartGradient.addColorStop(0, 'rgba(79, 70, 229, 0.2)');
+            chartGradient.addColorStop(1, 'rgba(79, 70, 229, 0)');
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: chartData.labels,
+                    datasets: [{
+                        label: 'Portfolio Value',
+                        data: chartData.values,
+                        borderColor: 'rgb(79, 70, 229)',
+                        backgroundColor: chartGradient,
+                        fill: true,
+                        tension: 0.1,
+                        pointBackgroundColor: 'rgb(79, 70, 229)',
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += new Intl.NumberFormat('en-IN', {
+                                            style: 'currency',
+                                            currency: 'INR',
+                                            maximumFractionDigits: 0
+                                        }).format(context.parsed.y);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            ticks: {
+                                callback: function(value, index, values) {
+                                    if (value >= 10000000) {
+                                        return '₹' + (value / 10000000).toFixed(2) + ' Cr';
+                                    } else if (value >= 100000) {
+                                        return '₹' + (value / 100000).toFixed(1) + ' L';
+                                    }
+                                    return '₹' + value;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
